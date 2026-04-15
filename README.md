@@ -1,6 +1,7 @@
 # TC5 — Tavern Creative
 
 Wedding stationery platform built with Next.js 16, Supabase, and Stripe.
+Owner: Tavern Creative, Kent UK.
 
 Originally bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
