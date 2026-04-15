@@ -1,0 +1,171 @@
+/* Core fonts used across designs */
+
+@font-face {
+  font-family: "La Bohemienne";
+  src: url("/fonts/LaBohemienne.otf") format("opentype");
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("/fonts/Montserrat-VariableFont_wght.ttf") format("truetype");
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Bembo Std";
+  src: url("/fonts/bembostd.otf") format("opentype");
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "TC Font";
+  src: url("/fonts/TC Font.otf") format("opentype");
+  font-weight: 400;
+  font-display: swap;
+}
+
+/* Heading / script fonts */
+
+@font-face {
+  font-family: "Rosse";
+  src: url("/fonts/ROSSE.ttf") format("truetype");
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Sweetie Bunny";
+  src: url("/fonts/SweetieBunny.otf") format("opentype");
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "August Script";
+  src: url("/fonts/August Script Bold Free.ttf") format("truetype");
+  font-weight: 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Silent Forest";
+  src: url("/fonts/Silent Forest.ttf") format("truetype");
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Autography";
+  src: url("/fonts/Autography.otf") format("opentype");
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Amalfi Coast";
+  src: url("/fonts/Amalfi Coast.ttf") format("truetype");
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Saritha";
+  src: url("/fonts/Saritha.ttf") format("truetype");
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Trajan Pro";
+  src: url("/fonts/Trajan Pro Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Hanston Demo";
+  src: url("/fonts/Hanston Demo.otf") format("opentype");
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Las Pariellas";
+  src: url("/fonts/LasPariellas-Script.ttf") format("truetype");
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "helloheart";
+  src: url("/fonts/hello heart.ttf") format("truetype");
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "samantha";
+  src: url("/fonts/samantha.ttf") format("truetype");
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Beauty Starlight";
+  src: url("/fonts/BeautyStarlight-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Clarista";
+  src: url("/fonts/Clarista.otf") format("opentype");
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Balnes";
+  src: url("/fonts/Demo Balnes.ttf") format("truetype");
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Talliya";
+  src: url("/fonts/Talliya.ttf") format("truetype");
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Sweet Sophie";
+  src: url("/fonts/Sweet Sophie.ttf") format("truetype");
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "a Auto Signature";
+  src: url("/fonts/aAutoSignature.ttf") format("truetype");
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Wilderness";
+  src: url("/fonts/WildernessTypeface-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Myriad Pro";
+  src: url("/fonts/MyriadPro-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-display: swap;
+}

@@ -1,0 +1,46 @@
+Package Report
+
+-----------------------------------------------------------------------------
+Document:
+Name: Blue Corner.ai
+Color Mode: CMYK color
+Color Profile: Coated FOGRA39 (ISO 12647-2:2004)
+Ruler Units: millimeters
+Artboard Dimensions: 127 mm x 177.8 mm
+Show Images in Outline Mode: OFF
+Highlight Substituted Fonts: OFF
+Highlight Substituted Glyphs: OFF
+Preserve Text Editability
+Simulate Colored Paper: OFF
+
+-----------------------------------------------------------------------------
+Spot Color Objects:
+
+-----------------------------------------------------------------------------
+Missing Fonts:
+ResidenceSaintJames Regular (not installed)
+
+-----------------------------------------------------------------------------
+Protected Fonts that were not packaged:
+La Bohemienne (Adobe Fonts)
+
+-----------------------------------------------------------------------------
+Fonts:
+August Script Bold free (TrueType)
+Autography (OTF)
+Bembo Std (OTF)
+Montserrat Regular (TrueType)
+Myriad Pro (OTF)
+T  Brook (OTF)
+
+-----------------------------------------------------------------------------
+Embedded Fonts:
+NONE
+
+-----------------------------------------------------------------------------
+Missing Links:
+NONE
+
+-----------------------------------------------------------------------------
+Linked Images:
+NONE

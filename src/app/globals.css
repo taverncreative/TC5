@@ -1,0 +1,48 @@
+@import "tailwindcss";
+
+:root {
+  --tc-black: #1a1a1a;
+  --tc-white: #fafafa;
+  --tc-sage: #a3b18a;
+  --tc-blush: #e8cfc0;
+  --tc-dusty-blue: #8eaec2;
+  --tc-sage-light: #c8d5b9;
+  --tc-blush-light: #f3e4da;
+  --tc-gray-50: #f9fafb;
+  --tc-gray-100: #f3f4f6;
+  --tc-gray-200: #e5e7eb;
+  --tc-gray-300: #d1d5db;
+  --tc-gray-400: #9ca3af;
+  --tc-gray-500: #6b7280;
+  --tc-gray-600: #4b5563;
+  --tc-gray-700: #374151;
+  --tc-gray-800: #1f2937;
+  --tc-gray-900: #111827;
+
+  --background: var(--tc-white);
+  --foreground: var(--tc-black);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-tc-black: var(--tc-black);
+  --color-tc-white: var(--tc-white);
+  --color-tc-sage: var(--tc-sage);
+  --color-tc-blush: var(--tc-blush);
+  --color-tc-dusty-blue: var(--tc-dusty-blue);
+  --color-tc-sage-light: var(--tc-sage-light);
+  --color-tc-blush-light: var(--tc-blush-light);
+  --font-body: var(--font-nunito);
+  --font-heading: var(--font-figtree);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-nunito), sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-figtree), sans-serif;
+}

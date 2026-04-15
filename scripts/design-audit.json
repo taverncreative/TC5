@@ -1,0 +1,472 @@
+[
+  {
+    "slug": "argyle-invitation",
+    "name": "Argyle",
+    "headingFont": "Saritha",
+    "accentColor": "#1a1a1a",
+    "namesInAccent": false,
+    "namesTransform": "none",
+    "needsUpdate": false,
+    "notes": "Script font, all text black, names in black. Config correct."
+  },
+  {
+    "slug": "autumn-invitation",
+    "name": "Autumn",
+    "headingFont": "Sweetie Bunny",
+    "accentColor": "#c65d3b",
+    "namesInAccent": true,
+    "namesTransform": "none",
+    "needsUpdate": true,
+    "notes": "Script font, names in terracotta/orange (#c65d3b), RECEPTION TO FOLLOW in terracotta. namesInAccent was missing from config."
+  },
+  {
+    "slug": "babys-breath-invitation",
+    "name": "Baby's Breath",
+    "headingFont": "August Script",
+    "accentColor": "#1a1a1a",
+    "namesInAccent": false,
+    "namesTransform": "none",
+    "needsUpdate": false,
+    "notes": "Script font, all text black, names in black. Config correct."
+  },
+  {
+    "slug": "blue-corner-invitation",
+    "name": "Blue Corner",
+    "headingFont": "Autography",
+    "accentColor": "#1a1a1a",
+    "namesInAccent": false,
+    "namesTransform": "none",
+    "needsUpdate": false,
+    "notes": "Script font, all text black, names in black. Config correct."
+  },
+  {
+    "slug": "blue-flowers-2-invitation",
+    "name": "Blue Flowers 2",
+    "headingFont": "helloheart",
+    "accentColor": "#b8962e",
+    "namesInAccent": true,
+    "namesTransform": "none",
+    "needsUpdate": true,
+    "notes": "Script font, names in gold (#b8962e), RECEPTION TO FOLLOW in gold. namesInAccent was missing from config."
+  },
+  {
+    "slug": "blue-ocean-watercolour-invitation",
+    "name": "Blue Ocean Watercolour",
+    "headingFont": "Autography",
+    "accentColor": "#2e6b8a",
+    "namesInAccent": true,
+    "namesTransform": "none",
+    "needsUpdate": true,
+    "notes": "Script font, names in blue (#2e6b8a), RECEPTION TO FOLLOW in blue. namesInAccent was missing from config."
+  },
+  {
+    "slug": "blue-roses-invitation",
+    "name": "Blue Roses",
+    "headingFont": "helloheart",
+    "accentColor": "#b8962e",
+    "namesInAccent": true,
+    "namesTransform": "none",
+    "needsUpdate": true,
+    "notes": "Script font, names in gold (#b8962e), RECEPTION TO FOLLOW in gold. namesInAccent was missing from config."
+  },
+  {
+    "slug": "bouquet-invitation",
+    "name": "Bouquet",
+    "headingFont": "Saritha",
+    "accentColor": "#1a1a1a",
+    "namesInAccent": false,
+    "namesTransform": "none",
+    "needsUpdate": false,
+    "notes": "Script font, all text black, names in black. Config correct."
+  },
+  {
+    "slug": "calligraphy-invitation",
+    "name": "Calligraphy",
+    "headingFont": "Rosse",
+    "accentColor": "#1a1a1a",
+    "namesInAccent": false,
+    "namesTransform": "none",
+    "needsUpdate": false,
+    "notes": "Script font, all text black, names in black. Config correct."
+  },
+  {
+    "slug": "confetti-invitation",
+    "name": "Confetti",
+    "headingFont": "Las Pariellas",
+    "accentColor": "#1a1a1a",
+    "namesInAccent": false,
+    "namesTransform": "none",
+    "needsUpdate": false,
+    "notes": "Script font, all text black, names in black. Gold confetti dots but text is all black. Config correct."
+  },
+  {
+    "slug": "destination-invitation",
+    "name": "Destination",
+    "headingFont": "Hanston Demo",
+    "accentColor": "#b8962e",
+    "namesInAccent": false,
+    "namesTransform": "none",
+    "needsUpdate": false,
+    "notes": "Script font, names in black/dark, RECEPTION TO FOLLOW in gold (#b8962e). Names are NOT in accent. Config correct."
+  },
+  {
+    "slug": "dreams-invitation",
+    "name": "Dreams",
+    "headingFont": "Bembo Std",
+    "accentColor": "#c08081",
+    "namesInAccent": true,
+    "namesTransform": "none",
+    "needsUpdate": true,
+    "notes": "Script font, names in pink/rose, RECEPTION TO FOLLOW in pink/rose. Config had accentColor #1a1a1a but visual shows rose/pink accent. Needs accentColor update to #c08081 and namesInAccent added."
+  },
+  {
+    "slug": "dried-flowers-invitation",
+    "name": "Dried Flowers",
+    "headingFont": "Sweetie Bunny",
+    "accentColor": "#8b3a3a",
+    "namesInAccent": true,
+    "namesTransform": "none",
+    "needsUpdate": true,
+    "notes": "Script font, names in dark burgundy/red (#8b3a3a), RECEPTION TO FOLLOW in same colour. namesInAccent was missing from config."
+  },
+  {
+    "slug": "eucalyptus-invitation",
+    "name": "Eucalyptus",
+    "headingFont": "a Auto Signature",
+    "accentColor": "#1a1a1a",
+    "namesInAccent": false,
+    "namesTransform": "none",
+    "needsUpdate": false,
+    "notes": "Script font, all text black, names in black. Config correct."
+  },
+  {
+    "slug": "festive-invitation",
+    "name": "Festive",
+    "headingFont": "Talliya",
+    "accentColor": "#c65d3b",
+    "namesInAccent": true,
+    "namesTransform": "none",
+    "needsUpdate": true,
+    "notes": "Script font, names in red/terracotta (#c65d3b), RECEPTION TO FOLLOW in same colour. namesInAccent was missing from config."
+  },
+  {
+    "slug": "frost-invitation",
+    "name": "Frost",
+    "headingFont": "Amalfi Coast",
+    "accentColor": "#2e6b8a",
+    "namesInAccent": true,
+    "namesTransform": "none",
+    "needsUpdate": true,
+    "notes": "Script font, names in blue (#2e6b8a), RECEPTION TO FOLLOW in blue. namesInAccent was missing from config."
+  },
+  {
+    "slug": "gold-floral-invitation",
+    "name": "Gold Floral",
+    "headingFont": "Bembo Std",
+    "accentColor": "#1a1a1a",
+    "namesInAccent": false,
+    "namesTransform": "none",
+    "needsUpdate": false,
+    "notes": "Script font, names in black, all text black. Gold floral outlines as decoration only. Config correct."
+  },
+  {
+    "slug": "gold-spots-invitation",
+    "name": "Gold Spots",
+    "headingFont": "Sweetie Bunny",
+    "accentColor": "#b8962e",
+    "namesInAccent": true,
+    "namesTransform": "none",
+    "needsUpdate": true,
+    "notes": "Script font, names in gold (#b8962e), RECEPTION TO FOLLOW in gold. namesInAccent was missing from config."
+  },
+  {
+    "slug": "green-leaves-watercolour-invitation",
+    "name": "Green Leaves Watercolour",
+    "headingFont": "Autography",
+    "accentColor": "#b8962e",
+    "namesInAccent": true,
+    "namesTransform": "none",
+    "needsUpdate": true,
+    "notes": "Script font, names in gold (#b8962e), RECEPTION TO FOLLOW in gold. namesInAccent was missing from config."
+  },
+  {
+    "slug": "green-leaves-invitation",
+    "name": "Green Leaves",
+    "headingFont": "Sweetie Bunny",
+    "accentColor": "#b8962e",
+    "namesInAccent": true,
+    "namesTransform": "none",
+    "needsUpdate": true,
+    "notes": "Script font, names in gold (#b8962e), RECEPTION TO FOLLOW in gold. namesInAccent was missing from config."
+  },
+  {
+    "slug": "greenery-eucalyptus-invitation",
+    "name": "Greenery Eucalyptus",
+    "headingFont": "Hanston Demo",
+    "accentColor": "#b8962e",
+    "namesInAccent": true,
+    "namesTransform": "none",
+    "needsUpdate": true,
+    "notes": "Script font, names in gold (#b8962e), RECEPTION TO FOLLOW in gold. Gold border frame. namesInAccent was missing from config."
+  },
+  {
+    "slug": "greys-invitation",
+    "name": "Greys",
+    "headingFont": "samantha",
+    "accentColor": "#1a2a44",
+    "namesInAccent": true,
+    "namesTransform": "none",
+    "needsUpdate": true,
+    "notes": "Script font, names in dark navy blue (#1a2a44), RECEPTION TO FOLLOW in muted blue-grey. Names use the accent colour (navy) not plain black. namesInAccent was missing from config."
+  },
+  {
+    "slug": "lavender-invitation",
+    "name": "Lavender",
+    "headingFont": "Clarista",
+    "accentColor": "#b8962e",
+    "namesInAccent": true,
+    "namesTransform": "none",
+    "needsUpdate": true,
+    "notes": "Script font, names in gold (#b8962e), RECEPTION TO FOLLOW in gold. namesInAccent was missing from config."
+  },
+  {
+    "slug": "lilac-floral-invitation",
+    "name": "Lilac Floral",
+    "headingFont": "Saritha",
+    "accentColor": "#8b5e8b",
+    "namesInAccent": true,
+    "namesTransform": "none",
+    "needsUpdate": true,
+    "notes": "Script font, names in purple/lilac (#8b5e8b), RECEPTION TO FOLLOW in same colour. namesInAccent was missing from config."
+  },
+  {
+    "slug": "mauve-floral-invitation",
+    "name": "Mauve Floral",
+    "headingFont": "Bembo Std",
+    "accentColor": "#c08081",
+    "namesInAccent": true,
+    "namesTransform": "none",
+    "needsUpdate": true,
+    "notes": "Script font, names in rose/mauve (#c08081), RECEPTION TO FOLLOW in same colour. namesInAccent was missing from config."
+  },
+  {
+    "slug": "new-york-invitation",
+    "name": "New York",
+    "headingFont": "Sweetie Bunny",
+    "accentColor": "#b8962e",
+    "namesInAccent": true,
+    "namesTransform": "none",
+    "needsUpdate": true,
+    "notes": "Script font, names in gold (#b8962e), RECEPTION TO FOLLOW in gold. namesInAccent was missing from config."
+  },
+  {
+    "slug": "october-invitation",
+    "name": "October",
+    "headingFont": "Amalfi Coast",
+    "accentColor": "#c65d3b",
+    "namesInAccent": true,
+    "namesTransform": "none",
+    "needsUpdate": true,
+    "notes": "Script font, names in terracotta/brown (#c65d3b), RECEPTION TO FOLLOW in same colour. namesInAccent was missing from config."
+  },
+  {
+    "slug": "olive-invitation",
+    "name": "Olive",
+    "headingFont": "Hanston Demo",
+    "accentColor": "#5f7d6e",
+    "namesInAccent": false,
+    "namesTransform": "none",
+    "needsUpdate": false,
+    "notes": "Script font, names in gold (#b8962e), RECEPTION TO FOLLOW in green (#5f7d6e). However names appear gold while accent is green - reviewing more carefully: names look gold-ish. Actually the accent colour for RECEPTION TO FOLLOW is correct as green. Names use gold but that differs from the accent. Setting namesInAccent false since names use a different colour than the defined accent."
+  },
+  {
+    "slug": "palm-invitation",
+    "name": "Palm",
+    "headingFont": "Sweetie Bunny",
+    "accentColor": "#b8962e",
+    "namesInAccent": true,
+    "namesTransform": "none",
+    "needsUpdate": true,
+    "notes": "Script font, names in gold (#b8962e), RECEPTION TO FOLLOW in gold. namesInAccent was missing from config."
+  },
+  {
+    "slug": "palm-1-invitation",
+    "name": "Palm 1",
+    "headingFont": "Las Pariellas",
+    "accentColor": "#1a1a1a",
+    "namesInAccent": false,
+    "namesTransform": "none",
+    "needsUpdate": false,
+    "notes": "Script font, all text black, names in black. Minimalist line-art design. Config correct."
+  },
+  {
+    "slug": "peach-floral-invitation",
+    "name": "Peach Floral",
+    "headingFont": "a Auto Signature",
+    "accentColor": "#c08081",
+    "namesInAccent": true,
+    "namesTransform": "none",
+    "needsUpdate": true,
+    "notes": "Script font, names in rose/peach (#c08081), RECEPTION TO FOLLOW in same colour. namesInAccent was missing from config."
+  },
+  {
+    "slug": "pink-glasses-invitation",
+    "name": "Pink Glasses",
+    "headingFont": "Beauty Starlight",
+    "accentColor": "#c0384b",
+    "namesInAccent": true,
+    "namesTransform": "none",
+    "needsUpdate": true,
+    "notes": "Script font, names in red/pink (#c0384b), RECEPTION TO FOLLOW in same colour. namesInAccent was missing from config."
+  },
+  {
+    "slug": "pink-floral-invitation",
+    "name": "Pink Floral",
+    "headingFont": "Bembo Std",
+    "accentColor": "#1a1a1a",
+    "namesInAccent": false,
+    "namesTransform": "uppercase",
+    "needsUpdate": false,
+    "notes": "Uppercase serif font (Bembo Std), names in black, all text black. Config correct including uppercase transform."
+  },
+  {
+    "slug": "pink-watercolour-invitation",
+    "name": "Pink Watercolour",
+    "headingFont": "Sweetie Bunny",
+    "accentColor": "#1a1a1a",
+    "namesInAccent": false,
+    "namesTransform": "none",
+    "needsUpdate": false,
+    "notes": "Script font, names in black, all text black. Pink watercolour background only. Config correct."
+  },
+  {
+    "slug": "pink-watercolour-2-invitation",
+    "name": "Pink Watercolour 2",
+    "headingFont": "Wilderness",
+    "accentColor": "#1a1a1a",
+    "namesInAccent": false,
+    "namesTransform": "none",
+    "needsUpdate": false,
+    "notes": "Script font, names in black, all text black. Pink watercolour background only. Config correct."
+  },
+  {
+    "slug": "purple-and-pink-invitation",
+    "name": "Purple & Pink",
+    "headingFont": "Sweetie Bunny",
+    "accentColor": "#c08081",
+    "namesInAccent": true,
+    "namesTransform": "none",
+    "needsUpdate": true,
+    "notes": "Script font, names in rose/pink (#c08081), RECEPTION TO FOLLOW in same colour. namesInAccent was missing from config."
+  },
+  {
+    "slug": "succulents-invitation",
+    "name": "Succulents",
+    "headingFont": "August Script",
+    "accentColor": "#c65d3b",
+    "namesInAccent": true,
+    "namesTransform": "none",
+    "needsUpdate": true,
+    "notes": "Script font, names in terracotta (#c65d3b), RECEPTION TO FOLLOW in same colour. namesInAccent was missing from config."
+  },
+  {
+    "slug": "sunflowers-invitation",
+    "name": "Sunflowers",
+    "headingFont": "Autography",
+    "accentColor": "#b8962e",
+    "namesInAccent": false,
+    "namesTransform": "none",
+    "needsUpdate": false,
+    "notes": "Script font, names in black/dark, RECEPTION TO FOLLOW in gold (#b8962e). Names are NOT in accent colour. Config correct."
+  },
+  {
+    "slug": "the-season-invitation",
+    "name": "The Season",
+    "headingFont": "helloheart",
+    "accentColor": "#b8962e",
+    "namesInAccent": true,
+    "namesTransform": "none",
+    "needsUpdate": true,
+    "notes": "Script font, names in gold (#b8962e), RECEPTION TO FOLLOW in gold. namesInAccent was missing from config."
+  },
+  {
+    "slug": "tropical-invitation",
+    "name": "Tropical",
+    "headingFont": "Bembo Std",
+    "accentColor": "#c0384b",
+    "namesInAccent": true,
+    "namesTransform": "none",
+    "needsUpdate": true,
+    "notes": "Script font, names in hot pink/red (#c0384b), RECEPTION TO FOLLOW in same colour. namesInAccent was missing from config."
+  },
+  {
+    "slug": "violet-invitation",
+    "name": "Violet",
+    "headingFont": "Saritha",
+    "accentColor": "#5b4a9e",
+    "namesInAccent": true,
+    "namesTransform": "none",
+    "needsUpdate": true,
+    "notes": "Script font, names in purple (#5b4a9e), RECEPTION TO FOLLOW in same purple. namesInAccent was missing from config."
+  },
+  {
+    "slug": "whimsical-invitation",
+    "name": "Whimsical",
+    "headingFont": "Saritha",
+    "accentColor": "#c08081",
+    "namesInAccent": true,
+    "namesTransform": "none",
+    "needsUpdate": true,
+    "notes": "Script font, names in rose (#c08081), RECEPTION TO FOLLOW in same colour. namesInAccent was missing from config."
+  },
+  {
+    "slug": "white-floral-roses-invitation",
+    "name": "White Floral Roses",
+    "headingFont": "Sweet Sophie",
+    "accentColor": "#5f7d6e",
+    "namesInAccent": true,
+    "namesTransform": "none",
+    "needsUpdate": true,
+    "notes": "Script font, names in green (#5f7d6e), RECEPTION TO FOLLOW in same green. namesInAccent was missing from config."
+  },
+  {
+    "slug": "white-roses-invitation",
+    "name": "White Roses",
+    "headingFont": "Rosse",
+    "accentColor": "#5f7d6e",
+    "namesInAccent": true,
+    "namesTransform": "none",
+    "needsUpdate": true,
+    "notes": "Script font, names in green (#5f7d6e), RECEPTION TO FOLLOW in same green. namesInAccent was missing from config."
+  },
+  {
+    "slug": "wildflowers-invitation",
+    "name": "Wildflowers",
+    "headingFont": "Bembo Std",
+    "accentColor": "#8b3a3a",
+    "namesInAccent": true,
+    "namesTransform": "uppercase",
+    "needsUpdate": true,
+    "notes": "Uppercase serif font (Bembo Std), names in dark red/maroon (#8b3a3a), RECEPTION TO FOLLOW in same colour. namesInAccent was missing from config."
+  },
+  {
+    "slug": "wintry-invitation",
+    "name": "Wintry",
+    "headingFont": "Silent Forest",
+    "accentColor": "#1a2a44",
+    "namesInAccent": true,
+    "namesTransform": "none",
+    "needsUpdate": true,
+    "notes": "Script font, names in dark navy blue (#1a2a44), RECEPTION TO FOLLOW in same colour. namesInAccent was missing from config."
+  },
+  {
+    "slug": "wooded-autumn-invitation",
+    "name": "Wooded Autumn",
+    "headingFont": "Bembo Std",
+    "accentColor": "#8b3a3a",
+    "namesInAccent": true,
+    "namesTransform": "uppercase",
+    "needsUpdate": true,
+    "notes": "Uppercase serif font (Bembo Std), names in dark red/maroon (#8b3a3a), RECEPTION TO FOLLOW in same colour. namesInAccent was missing from config."
+  }
+]

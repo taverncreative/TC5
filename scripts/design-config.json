@@ -1,0 +1,378 @@
+[
+  {
+    "folder": "Argyle _Folder",
+    "name": "Argyle",
+    "slug": "argyle-invitation",
+    "headingFont": "Saritha",
+    "accentColor": "#1a1a1a",
+    "namesTransform": "none"
+  },
+  {
+    "folder": "Autumn_Folder",
+    "name": "Autumn",
+    "slug": "autumn-invitation",
+    "headingFont": "Sweetie Bunny",
+    "accentColor": "#c65d3b",
+    "namesTransform": "none"
+  },
+  {
+    "folder": "Baby's Breath_Folder",
+    "name": "Baby's Breath",
+    "slug": "babys-breath-invitation",
+    "headingFont": "August Script",
+    "accentColor": "#1a1a1a",
+    "namesTransform": "none"
+  },
+  {
+    "folder": "Blue Corner_Folder",
+    "name": "Blue Corner",
+    "slug": "blue-corner-invitation",
+    "headingFont": "Autography",
+    "accentColor": "#1a1a1a",
+    "namesTransform": "none"
+  },
+  {
+    "folder": "Blue Flowers 2_Folder",
+    "name": "Blue Flowers 2",
+    "slug": "blue-flowers-2-invitation",
+    "headingFont": "helloheart",
+    "accentColor": "#b8962e",
+    "namesTransform": "none"
+  },
+  {
+    "folder": "Blue Ocean Watercolour_Folder",
+    "name": "Blue Ocean Watercolour",
+    "slug": "blue-ocean-watercolour-invitation",
+    "headingFont": "Autography",
+    "accentColor": "#2e6b8a",
+    "namesTransform": "none"
+  },
+  {
+    "folder": "Blue Roses_Folder",
+    "name": "Blue Roses",
+    "slug": "blue-roses-invitation",
+    "headingFont": "helloheart",
+    "accentColor": "#b8962e",
+    "namesTransform": "none"
+  },
+  {
+    "folder": "Bouquet_Folder",
+    "name": "Bouquet",
+    "slug": "bouquet-invitation",
+    "headingFont": "Saritha",
+    "accentColor": "#1a1a1a",
+    "namesTransform": "none"
+  },
+  {
+    "folder": "Calligraphy_Folder",
+    "name": "Calligraphy",
+    "slug": "calligraphy-invitation",
+    "headingFont": "Rosse",
+    "accentColor": "#1a1a1a",
+    "namesTransform": "none"
+  },
+  {
+    "folder": "Confetti_Folder",
+    "name": "Confetti",
+    "slug": "confetti-invitation",
+    "headingFont": "Las Pariellas",
+    "accentColor": "#1a1a1a",
+    "namesTransform": "none"
+  },
+  {
+    "folder": "Destination_Folder",
+    "name": "Destination",
+    "slug": "destination-invitation",
+    "headingFont": "Hanston Demo",
+    "accentColor": "#b8962e",
+    "namesTransform": "none"
+  },
+  {
+    "folder": "Dreams_Folder",
+    "name": "Dreams",
+    "slug": "dreams-invitation",
+    "headingFont": "Bembo Std",
+    "accentColor": "#1a1a1a",
+    "namesTransform": "none"
+  },
+  {
+    "folder": "Dried Flowers_Folder",
+    "name": "Dried Flowers",
+    "slug": "dried-flowers-invitation",
+    "headingFont": "Sweetie Bunny",
+    "accentColor": "#8b3a3a",
+    "namesTransform": "none"
+  },
+  {
+    "folder": "Eucalyptus_Folder",
+    "name": "Eucalyptus",
+    "slug": "eucalyptus-invitation",
+    "headingFont": "a Auto Signature",
+    "accentColor": "#1a1a1a",
+    "namesTransform": "none"
+  },
+  {
+    "folder": "Festive_Folder",
+    "name": "Festive",
+    "slug": "festive-invitation",
+    "headingFont": "Talliya",
+    "accentColor": "#c65d3b",
+    "namesTransform": "none"
+  },
+  {
+    "folder": "Frost_Folder",
+    "name": "Frost",
+    "slug": "frost-invitation",
+    "headingFont": "Amalfi Coast",
+    "accentColor": "#2e6b8a",
+    "namesTransform": "none"
+  },
+  {
+    "folder": "Gold Floral_Folder",
+    "name": "Gold Floral",
+    "slug": "gold-floral-invitation",
+    "headingFont": "Bembo Std",
+    "accentColor": "#1a1a1a",
+    "namesTransform": "none"
+  },
+  {
+    "folder": "Gold Spots_Folder",
+    "name": "Gold Spots",
+    "slug": "gold-spots-invitation",
+    "headingFont": "Sweetie Bunny",
+    "accentColor": "#b8962e",
+    "namesTransform": "none"
+  },
+  {
+    "folder": "Green Leaves Watercolour_Folder",
+    "name": "Green Leaves Watercolour",
+    "slug": "green-leaves-watercolour-invitation",
+    "headingFont": "Autography",
+    "accentColor": "#b8962e",
+    "namesTransform": "none"
+  },
+  {
+    "folder": "Green Leaves_Folder",
+    "name": "Green Leaves",
+    "slug": "green-leaves-invitation",
+    "headingFont": "Sweetie Bunny",
+    "accentColor": "#b8962e",
+    "namesTransform": "none"
+  },
+  {
+    "folder": "Greenery Eucalyptus_Folder",
+    "name": "Greenery Eucalyptus",
+    "slug": "greenery-eucalyptus-invitation",
+    "headingFont": "Hanston Demo",
+    "accentColor": "#b8962e",
+    "namesTransform": "none"
+  },
+  {
+    "folder": "Greys_Folder",
+    "name": "Greys",
+    "slug": "greys-invitation",
+    "headingFont": "samantha",
+    "accentColor": "#1a2a44",
+    "namesTransform": "none"
+  },
+  {
+    "folder": "Lavender_Folder",
+    "name": "Lavender",
+    "slug": "lavender-invitation",
+    "headingFont": "Clarista",
+    "accentColor": "#b8962e",
+    "namesTransform": "none"
+  },
+  {
+    "folder": "Lilac Floral_Folder",
+    "name": "Lilac Floral",
+    "slug": "lilac-floral-invitation",
+    "headingFont": "Saritha",
+    "accentColor": "#8b5e8b",
+    "namesTransform": "none"
+  },
+  {
+    "folder": "Mauve Floral_Folder",
+    "name": "Mauve Floral",
+    "slug": "mauve-floral-invitation",
+    "headingFont": "Bembo Std",
+    "accentColor": "#c08081",
+    "namesTransform": "none"
+  },
+  {
+    "folder": "New York_Folder",
+    "name": "New York",
+    "slug": "new-york-invitation",
+    "headingFont": "Sweetie Bunny",
+    "accentColor": "#b8962e",
+    "namesTransform": "none"
+  },
+  {
+    "folder": "October_Folder",
+    "name": "October",
+    "slug": "october-invitation",
+    "headingFont": "Amalfi Coast",
+    "accentColor": "#c65d3b",
+    "namesTransform": "none"
+  },
+  {
+    "folder": "Olive_Folder",
+    "name": "Olive",
+    "slug": "olive-invitation",
+    "headingFont": "Hanston Demo",
+    "accentColor": "#5f7d6e",
+    "namesTransform": "none"
+  },
+  {
+    "folder": "Palm_Folder",
+    "name": "Palm",
+    "slug": "palm-invitation",
+    "headingFont": "Sweetie Bunny",
+    "accentColor": "#b8962e",
+    "namesTransform": "none"
+  },
+  {
+    "folder": "palm1_Folder",
+    "name": "Palm 1",
+    "slug": "palm-1-invitation",
+    "headingFont": "Las Pariellas",
+    "accentColor": "#1a1a1a",
+    "namesTransform": "none"
+  },
+  {
+    "folder": "Peach Floral_Folder",
+    "name": "Peach Floral",
+    "slug": "peach-floral-invitation",
+    "headingFont": "a Auto Signature",
+    "accentColor": "#c08081",
+    "namesTransform": "none"
+  },
+  {
+    "folder": "Pink Glasses_Folder",
+    "name": "Pink Glasses",
+    "slug": "pink-glasses-invitation",
+    "headingFont": "Beauty Starlight",
+    "accentColor": "#c0384b",
+    "namesTransform": "none"
+  },
+  {
+    "folder": "pink floral_Folder",
+    "name": "Pink Floral",
+    "slug": "pink-floral-invitation",
+    "headingFont": "Bembo Std",
+    "accentColor": "#1a1a1a",
+    "namesTransform": "uppercase"
+  },
+  {
+    "folder": "Pink Watercolour_Folder",
+    "name": "Pink Watercolour",
+    "slug": "pink-watercolour-invitation",
+    "headingFont": "Sweetie Bunny",
+    "accentColor": "#1a1a1a",
+    "namesTransform": "none"
+  },
+  {
+    "folder": "Pink Watercolour2 _Folder",
+    "name": "Pink Watercolour 2",
+    "slug": "pink-watercolour-2-invitation",
+    "headingFont": "Wilderness",
+    "accentColor": "#1a1a1a",
+    "namesTransform": "none"
+  },
+  {
+    "folder": "Purple & Pink_Folder",
+    "name": "Purple & Pink",
+    "slug": "purple-and-pink-invitation",
+    "headingFont": "Sweetie Bunny",
+    "accentColor": "#c08081",
+    "namesTransform": "none"
+  },
+  {
+    "folder": "Succulents_Folder",
+    "name": "Succulents",
+    "slug": "succulents-invitation",
+    "headingFont": "August Script",
+    "accentColor": "#c65d3b",
+    "namesTransform": "none"
+  },
+  {
+    "folder": "Sunflowers_Folder",
+    "name": "Sunflowers",
+    "slug": "sunflowers-invitation",
+    "headingFont": "Autography",
+    "accentColor": "#b8962e",
+    "namesTransform": "none"
+  },
+  {
+    "folder": "The Season_Folder",
+    "name": "The Season",
+    "slug": "the-season-invitation",
+    "headingFont": "helloheart",
+    "accentColor": "#b8962e",
+    "namesTransform": "none"
+  },
+  {
+    "folder": "Tropical_Folder",
+    "name": "Tropical",
+    "slug": "tropical-invitation",
+    "headingFont": "Bembo Std",
+    "accentColor": "#c0384b",
+    "namesTransform": "none"
+  },
+  {
+    "folder": "Violet_Folder",
+    "name": "Violet",
+    "slug": "violet-invitation",
+    "headingFont": "Saritha",
+    "accentColor": "#5b4a9e",
+    "namesTransform": "none"
+  },
+  {
+    "folder": "Whimsical_Folder",
+    "name": "Whimsical",
+    "slug": "whimsical-invitation",
+    "headingFont": "Saritha",
+    "accentColor": "#c08081",
+    "namesTransform": "none"
+  },
+  {
+    "folder": "White Floral Roses_Folder",
+    "name": "White Floral Roses",
+    "slug": "white-floral-roses-invitation",
+    "headingFont": "Sweet Sophie",
+    "accentColor": "#5f7d6e",
+    "namesTransform": "none"
+  },
+  {
+    "folder": "White Roses_Folder",
+    "name": "White Roses",
+    "slug": "white-roses-invitation",
+    "headingFont": "Rosse",
+    "accentColor": "#5f7d6e",
+    "namesTransform": "none"
+  },
+  {
+    "folder": "Wildflowers_Folder",
+    "name": "Wildflowers",
+    "slug": "wildflowers-invitation",
+    "headingFont": "Bembo Std",
+    "accentColor": "#8b3a3a",
+    "namesTransform": "uppercase"
+  },
+  {
+    "folder": "Wintry_Folder",
+    "name": "Wintry",
+    "slug": "wintry-invitation",
+    "headingFont": "Silent Forest",
+    "accentColor": "#1a2a44",
+    "namesTransform": "none"
+  },
+  {
+    "folder": "Wooded autumn_Folder",
+    "name": "Wooded Autumn",
+    "slug": "wooded-autumn-invitation",
+    "headingFont": "Bembo Std",
+    "accentColor": "#8b3a3a",
+    "namesTransform": "uppercase"
+  }
+]
