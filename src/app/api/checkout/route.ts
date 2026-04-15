@@ -3,10 +3,10 @@ import { createServiceClient, createClient } from "@/lib/supabase/server";
 
 interface CheckoutBody {
   productSlug: string;
-  quantity: number;
+  quantity: number; // 0 means a single personalised sample
   paperStock: string;
   totalPence: number;
-  includeSample?: boolean;
+  isSample?: boolean;
   savedDesignId: string;
 }
 
@@ -18,13 +18,16 @@ export async function POST(request: NextRequest) {
       quantity,
       paperStock,
       totalPence,
-      includeSample,
+      isSample,
       savedDesignId,
     } = body;
 
+    const isSampleOrder = isSample || quantity === 0;
+
+    // Quantity of 0 is valid for a sample order
     if (
       !productSlug ||
-      !quantity ||
+      (quantity === undefined || quantity === null) ||
       !paperStock ||
       !totalPence ||
       !savedDesignId
@@ -94,11 +97,9 @@ export async function POST(request: NextRequest) {
       process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 
     const productName = designRow.product?.name || productSlug;
-    const descriptionParts = [
-      `${quantity} × invitations`,
-      `Paper: ${paperStock}`,
-    ];
-    if (includeSample) descriptionParts.push("Includes personalised sample");
+    const descriptionParts = isSampleOrder
+      ? ["1 × personalised sample", `Paper: ${paperStock}`]
+      : [`${quantity} × invitations`, `Paper: ${paperStock}`];
 
     const session = await stripe.checkout.sessions.create({
       mode: "payment",
@@ -110,7 +111,9 @@ export async function POST(request: NextRequest) {
             currency: "gbp",
             unit_amount: totalPence,
             product_data: {
-              name: `${productName} — ${quantity} copies`,
+              name: isSampleOrder
+                ? `${productName} — personalised sample`
+                : `${productName} — ${quantity} copies`,
               description: descriptionParts.join(" · "),
             },
           },
@@ -154,7 +157,7 @@ export async function POST(request: NextRequest) {
         quantity: String(quantity),
         paperStock,
         savedDesignId,
-        includeSample: includeSample ? "true" : "false",
+        isSample: isSampleOrder ? "true" : "false",
       },
       success_url: `${siteUrl}/order/success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${siteUrl}/order/${productSlug}/configure?design=${savedDesignId}`,

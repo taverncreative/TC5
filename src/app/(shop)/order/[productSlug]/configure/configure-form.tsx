@@ -13,14 +13,14 @@ interface ConfigureFormProps {
 }
 
 export function ConfigureForm({ productSlug, designId }: ConfigureFormProps) {
+  // Quantity 0 represents a single personalised sample (instead of a full run)
   const [quantity, setQuantity] = useState<number>(50);
-  const [includeSample, setIncludeSample] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  const isSample = quantity === 0;
   const pricePence = INVITATION_PRICING[quantity] || 0;
-  const samplePricePence = includeSample ? INVITATION_PRICING[0] || 500 : 0;
-  const totalPence = pricePence + samplePricePence;
+  const totalPence = pricePence;
 
   async function handleCheckout() {
     if (!designId) {
@@ -38,7 +38,7 @@ export function ConfigureForm({ productSlug, designId }: ConfigureFormProps) {
           quantity,
           paperStock: "fedrigoni-old-mill-300gsm",
           totalPence,
-          includeSample,
+          isSample,
           savedDesignId: designId,
         }),
       });
@@ -57,26 +57,61 @@ export function ConfigureForm({ productSlug, designId }: ConfigureFormProps) {
 
   return (
     <div className="mt-8 space-y-6">
-      {/* Quantity */}
+      {/* Sample or Full Run */}
       <Card>
-        <h3 className="text-sm font-semibold text-[var(--tc-black)] mb-3">
+        <h3 className="text-sm font-semibold text-[var(--tc-black)] mb-1">
           Quantity
         </h3>
-        <div className="grid grid-cols-5 gap-2">
-          {PRINT_QUANTITIES.map((qty) => (
-            <button
-              key={qty}
-              type="button"
-              onClick={() => setQuantity(qty)}
-              className={`px-3 py-2.5 rounded-md text-sm font-medium transition-colors ${
-                qty === quantity
-                  ? "bg-[var(--tc-black)] text-white"
-                  : "border border-[var(--tc-gray-300)] text-[var(--tc-gray-600)] hover:bg-[var(--tc-gray-50)]"
-              }`}
-            >
-              {qty}
-            </button>
-          ))}
+        <p className="text-xs text-[var(--tc-gray-500)] mb-3">
+          Order a single personalised sample first, or commit to your full print run.
+        </p>
+
+        <button
+          type="button"
+          onClick={() => setQuantity(0)}
+          className={`w-full text-left rounded-lg border p-4 transition-colors ${
+            isSample
+              ? "border-[var(--tc-black)] bg-[var(--tc-gray-50)]"
+              : "border-[var(--tc-gray-200)] hover:border-[var(--tc-sage)] hover:bg-[var(--tc-gray-50)]"
+          }`}
+        >
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm font-medium text-[var(--tc-black)]">
+                Personalised sample
+              </p>
+              <p className="text-xs text-[var(--tc-gray-500)] mt-0.5">
+                1 printed card so you can see and feel the real thing before committing
+              </p>
+            </div>
+            <div className="text-right flex-shrink-0 ml-4">
+              <p className="text-sm font-semibold text-[var(--tc-black)]">
+                {formatPrice(INVITATION_PRICING[0] || 500)}
+              </p>
+            </div>
+          </div>
+        </button>
+
+        <div className="mt-3">
+          <p className="text-xs font-medium text-[var(--tc-gray-500)] uppercase tracking-wide mb-2">
+            Or order your full print run
+          </p>
+          <div className="grid grid-cols-5 gap-2">
+            {PRINT_QUANTITIES.map((qty) => (
+              <button
+                key={qty}
+                type="button"
+                onClick={() => setQuantity(qty)}
+                className={`px-3 py-2.5 rounded-md text-sm font-medium transition-colors ${
+                  qty === quantity
+                    ? "bg-[var(--tc-black)] text-white"
+                    : "border border-[var(--tc-gray-300)] text-[var(--tc-gray-600)] hover:bg-[var(--tc-gray-50)]"
+                }`}
+              >
+                {qty}
+              </button>
+            ))}
+          </div>
         </div>
       </Card>
 
@@ -98,26 +133,6 @@ export function ConfigureForm({ productSlug, designId }: ConfigureFormProps) {
         </p>
       </Card>
 
-      {/* Personalised Sample */}
-      <Card>
-        <label className="flex items-start gap-3 cursor-pointer">
-          <input
-            type="checkbox"
-            checked={includeSample}
-            onChange={(e) => setIncludeSample(e.target.checked)}
-            className="mt-0.5 rounded"
-          />
-          <div>
-            <p className="text-sm font-medium text-[var(--tc-black)]">
-              Add Personalised Sample (+{formatPrice(500)})
-            </p>
-            <p className="text-xs text-[var(--tc-gray-500)] mt-0.5">
-              Receive a single printed sample before committing to your full order.
-            </p>
-          </div>
-        </label>
-      </Card>
-
       {/* Order Summary */}
       <Card className="bg-[var(--tc-gray-50)]">
         <h3 className="text-sm font-semibold text-[var(--tc-black)] mb-3">
@@ -125,15 +140,11 @@ export function ConfigureForm({ productSlug, designId }: ConfigureFormProps) {
         </h3>
         <div className="space-y-2 text-sm">
           <div className="flex justify-between text-[var(--tc-gray-600)]">
-            <span>{quantity} x invitations</span>
+            <span>
+              {isSample ? "1 × personalised sample" : `${quantity} × invitations`}
+            </span>
             <span>{formatPrice(pricePence)}</span>
           </div>
-          {includeSample && (
-            <div className="flex justify-between text-[var(--tc-gray-600)]">
-              <span>Personalised sample</span>
-              <span>{formatPrice(samplePricePence)}</span>
-            </div>
-          )}
           <div className="flex justify-between text-[var(--tc-gray-600)]">
             <span>Envelopes</span>
             <span className="text-[var(--tc-sage)]">Included</span>

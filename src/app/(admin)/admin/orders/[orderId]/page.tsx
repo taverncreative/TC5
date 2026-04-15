@@ -46,7 +46,7 @@ export default async function AdminOrderPage({ params }: AdminOrderPageProps) {
       productSlug?: string;
       quantity?: number;
       paperStock?: string;
-      includeSample?: boolean;
+      isSample?: boolean;
       design?: { name?: string; id?: string };
     } | null;
     stripe_payment_intent_id: string | null;
@@ -198,10 +198,22 @@ export default async function AdminOrderPage({ params }: AdminOrderPageProps) {
         <dl className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm">
           <div>
             <dt className="text-xs text-[var(--tc-gray-400)] uppercase tracking-wide">
+              Type
+            </dt>
+            <dd className="text-[var(--tc-black)] font-medium">
+              {order.print_config?.isSample
+                ? "Personalised sample"
+                : "Full print run"}
+            </dd>
+          </div>
+          <div>
+            <dt className="text-xs text-[var(--tc-gray-400)] uppercase tracking-wide">
               Quantity
             </dt>
             <dd className="text-[var(--tc-black)] font-medium">
-              {order.print_config?.quantity ?? "—"}
+              {order.print_config?.isSample
+                ? "1"
+                : (order.print_config?.quantity ?? "—")}
             </dd>
           </div>
           <div>
@@ -210,14 +222,6 @@ export default async function AdminOrderPage({ params }: AdminOrderPageProps) {
             </dt>
             <dd className="text-[var(--tc-black)]">
               {order.print_config?.paperStock || "—"}
-            </dd>
-          </div>
-          <div>
-            <dt className="text-xs text-[var(--tc-gray-400)] uppercase tracking-wide">
-              Sample
-            </dt>
-            <dd className="text-[var(--tc-black)]">
-              {order.print_config?.includeSample ? "Yes" : "No"}
             </dd>
           </div>
         </dl>

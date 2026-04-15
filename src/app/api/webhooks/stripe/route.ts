@@ -55,9 +55,9 @@ async function handleCheckoutCompleted(session: Stripe.Checkout.Session) {
   const productSlug = metadata.productSlug;
   const quantity = parseInt(metadata.quantity || "0", 10);
   const paperStock = metadata.paperStock;
-  const includeSample = metadata.includeSample === "true";
+  const isSample = metadata.isSample === "true" || quantity === 0;
 
-  if (!savedDesignId || !productSlug || !quantity) {
+  if (!savedDesignId || !productSlug) {
     console.error("Missing required metadata on checkout.session.completed", {
       sessionId: session.id,
       metadata,
@@ -111,7 +111,7 @@ async function handleCheckoutCompleted(session: Stripe.Checkout.Session) {
     productSlug,
     quantity,
     paperStock,
-    includeSample,
+    isSample,
     design: {
       id: designRow.id,
       name: designRow.name,

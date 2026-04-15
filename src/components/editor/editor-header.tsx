@@ -4,13 +4,13 @@ import { useState, useTransition } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEditorStore } from "@/lib/editor/store";
-import { renderPrintCanvas, renderBackPrintCanvas } from "@/lib/editor/render-print";
 import { Button } from "@/components/ui/button";
 import {
   approveDesignFromEditor,
   unlockDesignFromEditor,
   upsertDesign,
 } from "@/app/(editor)/editor/actions";
+import type { DesignSnapshot } from "@/app/(editor)/editor/actions";
 
 export function EditorHeader() {
   const template = useEditorStore((s) => s.template);
@@ -36,64 +36,25 @@ export function EditorHeader() {
   const setSaving = useEditorStore((s) => s.setSaving);
   const isAuthenticated = useEditorStore((s) => s.isAuthenticated);
   const designName = useEditorStore((s) => s.designName);
-  const [generatingPdf, setGeneratingPdf] = useState(false);
   const [statusError, setStatusError] = useState<string | null>(null);
   const [isPending, startTransition] = useTransition();
   const router = useRouter();
 
-  async function handlePreviewPdf() {
-    if (!template) return;
-    setGeneratingPdf(true);
-    try {
-      // Render design at 300 DPI on client canvas (uses correct browser fonts)
-      const rasterBlob = await renderPrintCanvas({
-        template,
-        productSlug,
-        sectionTexts,
-        selectedPaletteId,
-        selectedFontId,
-        accentColor,
-        nameLayout,
-        accentConnector,
-        accentSingleLine,
-      });
-
-      // Render back side if enabled
-      let backBlob: Blob | null = null;
-      if (reverseEnabled && reverseBlocks.length > 0) {
-        backBlob = await renderBackPrintCanvas(
-          template.dimensions.width_mm,
-          template.dimensions.height_mm,
-          reverseBlocks,
-          accentColor
-        );
-      }
-
-      // Send rasterized PNG(s) to server to wrap in PDF with bleed + crop marks
-      const formData = new FormData();
-      formData.append("raster", rasterBlob, "design.png");
-      if (backBlob) formData.append("rasterBack", backBlob, "back.png");
-      formData.append("productSlug", productSlug);
-      formData.append("widthMm", String(template.dimensions.width_mm));
-      formData.append("heightMm", String(template.dimensions.height_mm));
-      formData.append("bleedMm", String(template.dimensions.bleed_mm || 3));
-
-      const response = await fetch("/api/pdf/proof", {
-        method: "POST",
-        body: formData,
-      });
-
-      if (!response.ok) throw new Error("PDF generation failed");
-
-      const blob = await response.blob();
-      const url = URL.createObjectURL(blob);
-      window.open(url, "_blank");
-    } catch (error) {
-      console.error("PDF preview error:", error);
-      alert("Failed to generate PDF preview. Please try again.");
-    } finally {
-      setGeneratingPdf(false);
-    }
+  function currentSnapshot(): DesignSnapshot {
+    return {
+      id: savedDesignId,
+      productSlug,
+      name: designName,
+      sectionTexts,
+      selectedPaletteId,
+      selectedFontId,
+      accentColor,
+      nameLayout,
+      accentConnector,
+      accentSingleLine,
+      reverseEnabled,
+      reverseBlocks,
+    };
   }
 
   function persistAnonymousSnapshotAndSignUp(redirectTo?: string) {
@@ -119,55 +80,63 @@ export function EditorHeader() {
     router.push(`/register?redirect=${encodeURIComponent(back)}`);
   }
 
-  function handleApprove() {
+  /**
+   * Save + approve the current design. If no row exists yet we create one first.
+   * Returns the approved design's id, or null on failure.
+   */
+  async function saveAndApprove(): Promise<string | null> {
+    let idToApprove = savedDesignId;
+    if (!idToApprove) {
+      setSaving(true);
+      const saveResult = await upsertDesign(currentSnapshot());
+      setSaving(false);
+      if (!saveResult.ok || !saveResult.id) {
+        setStatusError(saveResult.error || "Failed to save design");
+        return null;
+      }
+      idToApprove = saveResult.id;
+      setSavedDesignId(saveResult.id);
+      if (saveResult.savedAt) setLastSavedAt(saveResult.savedAt);
+      if (typeof window !== "undefined") {
+        const url = new URL(window.location.href);
+        url.searchParams.set("design", saveResult.id);
+        window.history.replaceState(null, "", url.toString());
+      }
+    }
+
+    const result = await approveDesignFromEditor(idToApprove);
+    if (!result.ok) {
+      setStatusError(result.error || "Failed to save design");
+      return null;
+    }
+    setSavedDesignStatus("approved");
+    return idToApprove;
+  }
+
+  function handleSaveDesign() {
     if (!isAuthenticated) {
-      // Anonymous user — push them through sign-up first
       persistAnonymousSnapshotAndSignUp();
       return;
     }
     setStatusError(null);
     startTransition(async () => {
-      // If there's no saved row yet (user hasn't made any edits), save the
-      // current design snapshot first so we have something to approve.
-      let idToApprove = savedDesignId;
-      if (!idToApprove) {
-        setSaving(true);
-        const saveResult = await upsertDesign({
-          id: null,
-          productSlug,
-          name: designName,
-          sectionTexts,
-          selectedPaletteId,
-          selectedFontId,
-          accentColor,
-          nameLayout,
-          accentConnector,
-          accentSingleLine,
-          reverseEnabled,
-          reverseBlocks,
-        });
-        setSaving(false);
-        if (!saveResult.ok || !saveResult.id) {
-          setStatusError(saveResult.error || "Failed to save design");
-          return;
-        }
-        idToApprove = saveResult.id;
-        setSavedDesignId(saveResult.id);
-        if (saveResult.savedAt) setLastSavedAt(saveResult.savedAt);
-        // Reflect the new id in the URL so refresh reopens the same design
-        if (typeof window !== "undefined") {
-          const url = new URL(window.location.href);
-          url.searchParams.set("design", saveResult.id);
-          window.history.replaceState(null, "", url.toString());
-        }
-      }
+      const id = await saveAndApprove();
+      if (id) router.refresh();
+    });
+  }
 
-      const result = await approveDesignFromEditor(idToApprove);
-      if (result.ok) {
-        setSavedDesignStatus("approved");
-        router.refresh();
-      } else {
-        setStatusError(result.error || "Failed to approve");
+  function handleOrderPrints() {
+    if (!isAuthenticated) {
+      persistAnonymousSnapshotAndSignUp(
+        `/order/${productSlug}/configure`
+      );
+      return;
+    }
+    setStatusError(null);
+    startTransition(async () => {
+      const id = await saveAndApprove();
+      if (id) {
+        router.push(`/order/${productSlug}/configure?design=${id}`);
       }
     });
   }
@@ -201,6 +170,17 @@ export function EditorHeader() {
         >
           &larr; Back
         </Link>
+        {isAuthenticated && (
+          <>
+            <div className="h-4 w-px bg-[var(--tc-gray-200)]" />
+            <Link
+              href="/dashboard"
+              className="text-sm text-[var(--tc-gray-500)] hover:text-[var(--tc-black)] transition-colors"
+            >
+              Dashboard
+            </Link>
+          </>
+        )}
         <div className="h-4 w-px bg-[var(--tc-gray-200)]" />
         <span className="text-sm font-medium text-[var(--tc-black)]">
           {template?.name}
@@ -273,7 +253,7 @@ export function EditorHeader() {
                 d="M4.5 12.75l6 6 9-13.5"
               />
             </svg>
-            Approved
+            Saved
           </span>
         )}
         {isLocked && (
@@ -287,18 +267,9 @@ export function EditorHeader() {
       </div>
 
       <div className="flex items-center gap-3">
-        <Button
-          variant="outline"
-          size="sm"
-          onClick={handlePreviewPdf}
-          loading={generatingPdf}
-        >
-          Preview PDF
-        </Button>
-
         {!isApproved && !isLocked && !isAuthenticated && (
           <Button
-            variant="secondary"
+            variant="outline"
             size="sm"
             onClick={() => persistAnonymousSnapshotAndSignUp()}
           >
@@ -308,12 +279,22 @@ export function EditorHeader() {
 
         {!isApproved && !isLocked && isAuthenticated && (
           <Button
-            variant="secondary"
+            variant="outline"
             size="sm"
-            onClick={handleApprove}
+            onClick={handleSaveDesign}
             loading={isPending}
           >
-            Approve Design
+            Save Design
+          </Button>
+        )}
+
+        {!isApproved && !isLocked && (
+          <Button
+            size="sm"
+            onClick={handleOrderPrints}
+            loading={isPending && isAuthenticated}
+          >
+            Order Prints
           </Button>
         )}
 
