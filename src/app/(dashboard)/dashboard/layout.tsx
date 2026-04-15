@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { requireProfile } from "@/lib/db/auth";
 import { DashboardNav } from "@/components/dashboard/dashboard-nav";
 import { DashboardHeader } from "@/components/dashboard/dashboard-header";

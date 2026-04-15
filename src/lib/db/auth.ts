@@ -1,10 +1,13 @@
 import { redirect } from "next/navigation";
-import { createClient } from "@/lib/supabase/server";
+import { createClient, createServiceClient } from "@/lib/supabase/server";
 import type { Profile } from "@/lib/types/database";
 
 /**
  * Get the currently authenticated user's profile.
- * Returns null if not authenticated.
+ * If the user is authenticated but has no profile row yet (trigger missing,
+ * race, etc.), creates one on the fly using the service client so the app
+ * never white-screens due to a missing profile.
+ * Returns null only if the user isn't authenticated at all.
  */
 export async function getCurrentProfile(): Promise<Profile | null> {
   const supabase = await createClient();
@@ -14,13 +17,32 @@ export async function getCurrentProfile(): Promise<Profile | null> {
 
   if (!user) return null;
 
-  const { data } = await supabase
+  // Use maybeSingle to avoid throwing when no row exists
+  const { data: existing } = await supabase
     .from("profiles")
     .select("*")
     .eq("id", user.id)
+    .maybeSingle();
+
+  if (existing) return existing as Profile;
+
+  // Self-heal: create the profile via service client (bypasses RLS)
+  const admin = await createServiceClient();
+  const fullName =
+    (user.user_metadata as { full_name?: string } | undefined)?.full_name ||
+    null;
+
+  const { data: created } = await admin
+    .from("profiles")
+    .insert({
+      id: user.id,
+      email: user.email ?? "",
+      full_name: fullName,
+    })
+    .select("*")
     .single();
 
-  return data as Profile | null;
+  return (created as Profile | null) ?? null;
 }
 
 /**

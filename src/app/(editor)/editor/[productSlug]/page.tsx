@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import { getEditorTemplate } from "@/lib/mock-data-editor";
 import { getShopProduct } from "@/lib/db/queries";
+import { createClient } from "@/lib/supabase/server";
 import { EditorShell } from "@/components/editor/editor-shell";
 import { loadDesign } from "@/app/(editor)/editor/actions";
 import type { LoadSavedDesignPayload } from "@/lib/editor/types";
@@ -26,8 +27,15 @@ export default async function EditorPage({ params, searchParams }: EditorPagePro
   const template = await getEditorTemplate(productSlug);
   if (!template) notFound();
 
+  // Detect if user is signed in (autosave only runs when logged in)
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  const isAuthenticated = !!user;
+
   let savedDesign: LoadSavedDesignPayload | null = null;
-  if (designId) {
+  if (designId && isAuthenticated) {
     const result = await loadDesign(designId);
     if (result.ok && result.design.productSlug === productSlug) {
       savedDesign = {
@@ -53,6 +61,7 @@ export default async function EditorPage({ params, searchParams }: EditorPagePro
       template={template}
       productSlug={productSlug}
       savedDesign={savedDesign}
+      isAuthenticated={isAuthenticated}
     />
   );
 }

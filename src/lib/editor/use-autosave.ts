@@ -21,6 +21,7 @@ export function useAutosave() {
   const isLoading = useEditorStore((s) => s.isLoading);
   const savedDesignId = useEditorStore((s) => s.savedDesignId);
   const savedDesignStatus = useEditorStore((s) => s.savedDesignStatus);
+  const isAuthenticated = useEditorStore((s) => s.isAuthenticated);
   const designName = useEditorStore((s) => s.designName);
   const sectionTexts = useEditorStore((s) => s.sectionTexts);
   const selectedPaletteId = useEditorStore((s) => s.selectedPaletteId);
@@ -43,6 +44,8 @@ export function useAutosave() {
   useEffect(() => {
     if (isLoading) return;
     if (!template || !productSlug) return;
+    // Anonymous users: don't save to DB — they'll be prompted to sign up
+    if (!isAuthenticated) return;
     // Don't save approved/locked designs — they're read-only
     if (savedDesignStatus !== "draft") return;
 
@@ -123,6 +126,7 @@ export function useAutosave() {
     productSlug,
     savedDesignId,
     savedDesignStatus,
+    isAuthenticated,
     designName,
     sectionTexts,
     selectedPaletteId,

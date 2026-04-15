@@ -57,6 +57,7 @@ export const useEditorStore = create<EditorState>((set) => ({
   savedDesignId: null,
   designName: "",
   savedDesignStatus: "draft",
+  isAuthenticated: false,
 
   setTemplate: (template) => set({ template }),
   setProductSlug: (slug) => set({ productSlug: slug }),
@@ -75,6 +76,7 @@ export const useEditorStore = create<EditorState>((set) => ({
   setSavedDesignId: (id) => set({ savedDesignId: id }),
   setDesignName: (name) => set({ designName: name }),
   setSavedDesignStatus: (status) => set({ savedDesignStatus: status }),
+  setIsAuthenticated: (value) => set({ isAuthenticated: value }),
 
   loadSavedDesign: (payload) =>
     set({

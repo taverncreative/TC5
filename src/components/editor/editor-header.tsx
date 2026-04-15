@@ -30,6 +30,8 @@ export function EditorHeader() {
   const savedDesignId = useEditorStore((s) => s.savedDesignId);
   const savedDesignStatus = useEditorStore((s) => s.savedDesignStatus);
   const setSavedDesignStatus = useEditorStore((s) => s.setSavedDesignStatus);
+  const isAuthenticated = useEditorStore((s) => s.isAuthenticated);
+  const designName = useEditorStore((s) => s.designName);
   const [generatingPdf, setGeneratingPdf] = useState(false);
   const [statusError, setStatusError] = useState<string | null>(null);
   const [isPending, startTransition] = useTransition();
@@ -90,7 +92,35 @@ export function EditorHeader() {
     }
   }
 
+  function persistAnonymousSnapshotAndSignUp(redirectTo?: string) {
+    if (typeof window === "undefined") return;
+    const snapshot = {
+      productSlug,
+      name: designName,
+      sectionTexts,
+      selectedPaletteId,
+      selectedFontId,
+      accentColor,
+      nameLayout,
+      accentConnector,
+      accentSingleLine,
+      reverseEnabled,
+      reverseBlocks,
+    };
+    window.sessionStorage.setItem(
+      `tc:pending-design:${productSlug}`,
+      JSON.stringify(snapshot)
+    );
+    const back = redirectTo || `/editor/${productSlug}`;
+    router.push(`/register?redirect=${encodeURIComponent(back)}`);
+  }
+
   function handleApprove() {
+    if (!isAuthenticated) {
+      // Anonymous user — push them through sign-up first
+      persistAnonymousSnapshotAndSignUp();
+      return;
+    }
     if (!savedDesignId) {
       setStatusError("Make at least one change so we can save your design first");
       return;
@@ -169,10 +199,28 @@ export function EditorHeader() {
             </div>
           </>
         )}
-        {isSaving && (
+        {!isAuthenticated && !isApproved && !isLocked && (
+          <span className="inline-flex items-center gap-1 text-xs font-medium text-[var(--tc-gray-500)] bg-[var(--tc-blush-light)]/50 px-2 py-0.5 rounded-full">
+            <svg
+              className="w-3 h-3"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2}
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M13.5 10.5V6.75a4.5 4.5 0 119 0v3.75M3.75 21.75h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H3.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"
+              />
+            </svg>
+            Not saved
+          </span>
+        )}
+        {isAuthenticated && isSaving && (
           <span className="text-xs text-[var(--tc-gray-400)]">Saving...</span>
         )}
-        {!isSaving && lastSavedAt && !isApproved && !isLocked && (
+        {isAuthenticated && !isSaving && lastSavedAt && !isApproved && !isLocked && (
           <span className="text-xs text-[var(--tc-gray-400)]">Saved</span>
         )}
         {isApproved && (
@@ -213,7 +261,17 @@ export function EditorHeader() {
           Preview PDF
         </Button>
 
-        {!isApproved && !isLocked && (
+        {!isApproved && !isLocked && !isAuthenticated && (
+          <Button
+            variant="secondary"
+            size="sm"
+            onClick={() => persistAnonymousSnapshotAndSignUp()}
+          >
+            Sign Up to Save
+          </Button>
+        )}
+
+        {!isApproved && !isLocked && isAuthenticated && (
           <Button
             variant="secondary"
             size="sm"

@@ -40,6 +40,8 @@ export interface EditorState {
   savedDesignId: string | null;
   designName: string;
   savedDesignStatus: "draft" | "approved" | "locked";
+  /** When false, autosave is disabled and UI shows "Sign up to save" */
+  isAuthenticated: boolean;
 
   // Actions
   setTemplate: (template: Template) => void;
@@ -54,6 +56,7 @@ export interface EditorState {
   setSavedDesignId: (id: string | null) => void;
   setDesignName: (name: string) => void;
   setSavedDesignStatus: (status: "draft" | "approved" | "locked") => void;
+  setIsAuthenticated: (value: boolean) => void;
   initializeFromTemplate: (template: Template) => void;
   loadSavedDesign: (payload: LoadSavedDesignPayload) => void;
 }

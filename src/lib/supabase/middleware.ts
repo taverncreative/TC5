@@ -29,10 +29,11 @@ export async function updateSession(request: NextRequest) {
     data: { user },
   } = await supabase.auth.getUser();
 
+  // /editor is OPEN — customers can design without signing in. They'll be
+  // prompted to sign up only when they approve the design or try to order.
   const isProtected =
     request.nextUrl.pathname.startsWith("/admin") ||
     request.nextUrl.pathname.startsWith("/dashboard") ||
-    request.nextUrl.pathname.startsWith("/editor") ||
     request.nextUrl.pathname.startsWith("/order");
 
   if (isProtected && !user) {
