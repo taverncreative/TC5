@@ -1,6 +1,9 @@
 import Link from "next/link";
 import "../../(editor)/editor/fonts.css";
 
+// Admin pages query live DB data per-request — never prerender
+export const dynamic = "force-dynamic";
+
 const adminNav = [
   { href: "/admin", label: "Dashboard" },
   { href: "/admin/templates", label: "Templates" },

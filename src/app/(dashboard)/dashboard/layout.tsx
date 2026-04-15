@@ -3,6 +3,9 @@ import { requireProfile } from "@/lib/db/auth";
 import { DashboardNav } from "@/components/dashboard/dashboard-nav";
 import { DashboardHeader } from "@/components/dashboard/dashboard-header";
 
+// Dashboard pages are always per-user and never prerender
+export const dynamic = "force-dynamic";
+
 export default async function DashboardLayout({
   children,
 }: {
