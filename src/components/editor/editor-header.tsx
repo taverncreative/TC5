@@ -33,7 +33,6 @@ export function EditorHeader() {
   const setSavedDesignStatus = useEditorStore((s) => s.setSavedDesignStatus);
   const setSavedDesignId = useEditorStore((s) => s.setSavedDesignId);
   const setLastSavedAt = useEditorStore((s) => s.setLastSavedAt);
-  const setSaving = useEditorStore((s) => s.setSaving);
   const isAuthenticated = useEditorStore((s) => s.isAuthenticated);
   const designName = useEditorStore((s) => s.designName);
   const [statusError, setStatusError] = useState<string | null>(null);
@@ -83,36 +82,28 @@ export function EditorHeader() {
   }
 
   /**
-   * Save + approve the current design. If no row exists yet we create one first.
+   * Ensure the design is saved + approved in the DB.
    * Returns the approved design's id, or null on failure.
+   * Does NOT touch local state — callers decide whether to update the UI
+   * (Save Design updates it; Order Prints leaves it alone because we're
+   * navigating away).
    */
-  async function saveAndApprove(): Promise<string | null> {
-    let idToApprove = savedDesignId;
-    if (!idToApprove) {
-      setSaving(true);
+  async function ensureSavedAndApproved(): Promise<string | null> {
+    let id = savedDesignId;
+    if (!id) {
       const saveResult = await upsertDesign(currentSnapshot());
-      setSaving(false);
       if (!saveResult.ok || !saveResult.id) {
         setStatusError(saveResult.error || "Failed to save design");
         return null;
       }
-      idToApprove = saveResult.id;
-      setSavedDesignId(saveResult.id);
-      if (saveResult.savedAt) setLastSavedAt(saveResult.savedAt);
-      if (typeof window !== "undefined") {
-        const url = new URL(window.location.href);
-        url.searchParams.set("design", saveResult.id);
-        window.history.replaceState(null, "", url.toString());
-      }
+      id = saveResult.id;
     }
-
-    const result = await approveDesignFromEditor(idToApprove);
+    const result = await approveDesignFromEditor(id);
     if (!result.ok) {
       setStatusError(result.error || "Failed to save design");
       return null;
     }
-    setSavedDesignStatus("approved");
-    return idToApprove;
+    return id;
   }
 
   async function handleSaveDesign() {
@@ -123,8 +114,21 @@ export function EditorHeader() {
     setStatusError(null);
     setSaveLoading(true);
     try {
-      const id = await saveAndApprove();
-      if (id) router.refresh();
+      const id = await ensureSavedAndApproved();
+      if (id) {
+        // Stay in editor — update local state so the UI shows approved/locked
+        if (!savedDesignId) {
+          setSavedDesignId(id);
+          if (typeof window !== "undefined") {
+            const url = new URL(window.location.href);
+            url.searchParams.set("design", id);
+            window.history.replaceState(null, "", url.toString());
+          }
+        }
+        setLastSavedAt(new Date().toISOString());
+        setSavedDesignStatus("approved");
+        router.refresh();
+      }
     } catch (e) {
       setStatusError(e instanceof Error ? e.message : "Failed to save");
     } finally {
@@ -142,15 +146,18 @@ export function EditorHeader() {
     setStatusError(null);
     setOrderLoading(true);
     try {
-      const id = await saveAndApprove();
-      if (id) {
-        router.push(`/order/${productSlug}/configure?design=${id}`);
+      const id = await ensureSavedAndApproved();
+      if (!id) {
+        setOrderLoading(false);
+        return;
       }
+      // Don't touch local state — we're navigating to the configure page.
+      // Updating savedDesignStatus would swap this button to its Link variant
+      // mid-click and disrupt the push.
+      router.push(`/order/${productSlug}/configure?design=${id}`);
+      // Leave orderLoading true until the component unmounts on navigation
     } catch (e) {
       setStatusError(e instanceof Error ? e.message : "Failed to order");
-    } finally {
-      // Note: on successful navigation this button unmounts, but on error
-      // we need to clear the spinner.
       setOrderLoading(false);
     }
   }
