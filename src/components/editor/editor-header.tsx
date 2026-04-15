@@ -37,6 +37,8 @@ export function EditorHeader() {
   const isAuthenticated = useEditorStore((s) => s.isAuthenticated);
   const designName = useEditorStore((s) => s.designName);
   const [statusError, setStatusError] = useState<string | null>(null);
+  const [saveLoading, setSaveLoading] = useState(false);
+  const [orderLoading, setOrderLoading] = useState(false);
   const [isPending, startTransition] = useTransition();
   const router = useRouter();
 
@@ -113,19 +115,24 @@ export function EditorHeader() {
     return idToApprove;
   }
 
-  function handleSaveDesign() {
+  async function handleSaveDesign() {
     if (!isAuthenticated) {
       persistAnonymousSnapshotAndSignUp();
       return;
     }
     setStatusError(null);
-    startTransition(async () => {
+    setSaveLoading(true);
+    try {
       const id = await saveAndApprove();
       if (id) router.refresh();
-    });
+    } catch (e) {
+      setStatusError(e instanceof Error ? e.message : "Failed to save");
+    } finally {
+      setSaveLoading(false);
+    }
   }
 
-  function handleOrderPrints() {
+  async function handleOrderPrints() {
     if (!isAuthenticated) {
       persistAnonymousSnapshotAndSignUp(
         `/order/${productSlug}/configure`
@@ -133,12 +140,19 @@ export function EditorHeader() {
       return;
     }
     setStatusError(null);
-    startTransition(async () => {
+    setOrderLoading(true);
+    try {
       const id = await saveAndApprove();
       if (id) {
         router.push(`/order/${productSlug}/configure?design=${id}`);
       }
-    });
+    } catch (e) {
+      setStatusError(e instanceof Error ? e.message : "Failed to order");
+    } finally {
+      // Note: on successful navigation this button unmounts, but on error
+      // we need to clear the spinner.
+      setOrderLoading(false);
+    }
   }
 
   function handleUnlock() {
@@ -282,7 +296,8 @@ export function EditorHeader() {
             variant="outline"
             size="sm"
             onClick={handleSaveDesign}
-            loading={isPending}
+            loading={saveLoading}
+            disabled={saveLoading || orderLoading}
           >
             Save Design
           </Button>
@@ -292,7 +307,8 @@ export function EditorHeader() {
           <Button
             size="sm"
             onClick={handleOrderPrints}
-            loading={isPending && isAuthenticated}
+            loading={orderLoading}
+            disabled={saveLoading || orderLoading}
           >
             Order Prints
           </Button>
