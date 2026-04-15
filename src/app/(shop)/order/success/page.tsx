@@ -17,7 +17,7 @@ export default async function OrderSuccessPage({
 
   // Try to load the order — may not exist yet if the webhook hasn't fired
   // (Stripe webhooks can take a few seconds). We'll show a graceful state.
-  let order: {
+  type OrderSummary = {
     id: string;
     order_number: string | null;
     total_pence: number;
@@ -31,7 +31,9 @@ export default async function OrderSuccessPage({
       postal_code?: string;
     } | null;
     product: { name: string } | null;
-  } | null = null;
+  };
+
+  let order: OrderSummary | null = null;
 
   if (sessionId) {
     const admin = await createServiceClient();
@@ -43,7 +45,7 @@ export default async function OrderSuccessPage({
       .eq("stripe_checkout_session_id", sessionId)
       .maybeSingle();
     if (data) {
-      order = data as unknown as typeof order;
+      order = data as unknown as OrderSummary;
     }
   }
 

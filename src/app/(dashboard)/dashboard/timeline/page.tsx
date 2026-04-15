@@ -34,16 +34,19 @@ export default async function TimelinePage() {
       .eq("customer_id", profile.id),
   ]);
 
-  const designs = designsRes.data || [];
-  const orders = ordersRes.data || [];
+  type WithCategory = {
+    product?: { template?: { category?: string } | null } | null;
+  };
+  const designs = (designsRes.data || []) as unknown as WithCategory[];
+  const orders = (ordersRes.data || []) as unknown as WithCategory[];
 
   const designedCategories = new Set<string>();
   const orderedCategories = new Set<string>();
-  designs.forEach((d: { product?: { template?: { category?: string } } | null }) => {
+  designs.forEach((d) => {
     const c = d.product?.template?.category;
     if (c) designedCategories.add(c);
   });
-  orders.forEach((o: { product?: { template?: { category?: string } } | null }) => {
+  orders.forEach((o) => {
     const c = o.product?.template?.category;
     if (c) orderedCategories.add(c);
   });

@@ -19,7 +19,7 @@ export default async function DesignsPage() {
     .eq("customer_id", profile.id)
     .order("updated_at", { ascending: false });
 
-  const designs = (designsRaw || []) as DesignCardData[];
+  const designs = (designsRaw || []) as unknown as DesignCardData[];
 
   const drafts = designs.filter((d) => d.status === "draft");
   const approved = designs.filter((d) => d.status === "approved");

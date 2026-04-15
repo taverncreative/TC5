@@ -78,7 +78,7 @@ export function TemplateBuilderForm({ initialData }: TemplateBuilderFormProps) {
   }
 
   function handleCategoryChange(value: string) {
-    setCategory(value);
+    setCategory(value as "save-the-date" | "invitation" | "on-the-day" | "thank-you");
     if (!isEdit && sections.length === 0) {
       setSections(getDefaultSections(value));
     }
@@ -229,7 +229,7 @@ export function TemplateBuilderForm({ initialData }: TemplateBuilderFormProps) {
             <label className="block text-sm font-medium text-[var(--tc-gray-700)]">Status</label>
             <select
               value={status}
-              onChange={(e) => setStatus(e.target.value)}
+              onChange={(e) => setStatus(e.target.value as "draft" | "active" | "archived")}
               className="block w-full rounded-md border border-[var(--tc-gray-300)] px-3 py-2 text-sm"
             >
               <option value="draft">Draft</option>

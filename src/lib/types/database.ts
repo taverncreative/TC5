@@ -30,9 +30,9 @@ export interface TemplateSection {
     x_mm: number;
     width_mm: number;
     max_height_mm: number;
-    gap_after_mm: number; // space between this section and next
+    gap_after_mm?: number; // space between this section and next
     alignment: "left" | "center" | "right";
-    sort_order: number; // vertical stacking order (lower = higher on page)
+    sort_order?: number; // vertical stacking order (lower = higher on page)
     // Legacy field - kept for backward compat during migration
     y_mm?: number;
     vertical_alignment?: "top" | "center" | "bottom";
@@ -48,11 +48,11 @@ export interface TemplateSection {
   };
   content: {
     default_text: string;
-    required: boolean; // customer must fill this in
+    required?: boolean; // customer must fill this in
     max_length: number;
     multiline: boolean;
     max_lines: number;
-    word_wrap: boolean; // auto-wrap text at width boundary
+    word_wrap?: boolean; // auto-wrap text at width boundary
     validation?: string;
     help_text?: string;
     // Legacy field
@@ -101,7 +101,7 @@ export interface Template {
   color_palettes: ColorPalette[];
   font_options: FontOption[];
   background: TemplateBackground | null;
-  text_area: TemplateTextArea;
+  text_area?: TemplateTextArea;
   thumbnail_url: string | null;
   status: TemplateStatus;
   created_at: string;

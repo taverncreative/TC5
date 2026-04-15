@@ -212,7 +212,7 @@ export function ProductForm({ templates, initialData }: ProductFormProps) {
             <label className="block text-sm font-medium text-[var(--tc-gray-700)]">Status</label>
             <select
               value={status}
-              onChange={(e) => setStatus(e.target.value)}
+              onChange={(e) => setStatus(e.target.value as "draft" | "active" | "archived")}
               className="block w-full rounded-md border border-[var(--tc-gray-300)] px-3 py-2 text-sm"
             >
               <option value="draft">Draft</option>

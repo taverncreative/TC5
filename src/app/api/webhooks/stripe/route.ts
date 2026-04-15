@@ -127,8 +127,8 @@ async function handleCheckoutCompleted(session: Stripe.Checkout.Session) {
     },
   };
 
-  // Shipping details from Stripe
-  const shippingDetails = session.shipping_details;
+  // Shipping details from Stripe (lives under collected_information in recent API)
+  const shippingDetails = session.collected_information?.shipping_details;
   const shippingAddress = shippingDetails
     ? {
         name: shippingDetails.name,

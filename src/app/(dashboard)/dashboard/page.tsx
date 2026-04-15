@@ -36,8 +36,29 @@ export default async function DashboardPage() {
       .order("created_at", { ascending: false }),
   ]);
 
-  const designs = designsRes.data || [];
-  const orders = ordersRes.data || [];
+  const designs = (designsRes.data || []) as unknown as Array<{
+    id: string;
+    name: string;
+    status: string;
+    updated_at: string;
+    product?: {
+      name: string;
+      slug: string;
+      template?: { category?: string; thumbnail_url?: string | null } | null;
+    } | null;
+  }>;
+  const orders = (ordersRes.data || []) as unknown as Array<{
+    id: string;
+    status: string;
+    total_pence: number;
+    created_at: string;
+    order_number: string | null;
+    product?: {
+      name: string;
+      slug: string;
+      template?: { category?: string } | null;
+    } | null;
+  }>;
 
   // Compute journey stages from real design/order data
   const stages = computeJourneyStages(designs, orders, profile.wedding_date);
@@ -335,13 +356,13 @@ function QuickLink({
 interface DesignWithProduct {
   id: string;
   status: string;
-  product?: { template?: { category?: string } } | null;
+  product?: { template?: { category?: string } | null } | null;
 }
 
 interface OrderWithProduct {
   id: string;
   status: string;
-  product?: { template?: { category?: string } } | null;
+  product?: { template?: { category?: string } | null } | null;
 }
 
 function computeJourneyStages(
