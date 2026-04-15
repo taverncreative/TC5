@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import {
   approveDesignFromEditor,
   unlockDesignFromEditor,
+  upsertDesign,
 } from "@/app/(editor)/editor/actions";
 
 export function EditorHeader() {
@@ -30,6 +31,9 @@ export function EditorHeader() {
   const savedDesignId = useEditorStore((s) => s.savedDesignId);
   const savedDesignStatus = useEditorStore((s) => s.savedDesignStatus);
   const setSavedDesignStatus = useEditorStore((s) => s.setSavedDesignStatus);
+  const setSavedDesignId = useEditorStore((s) => s.setSavedDesignId);
+  const setLastSavedAt = useEditorStore((s) => s.setLastSavedAt);
+  const setSaving = useEditorStore((s) => s.setSaving);
   const isAuthenticated = useEditorStore((s) => s.isAuthenticated);
   const designName = useEditorStore((s) => s.designName);
   const [generatingPdf, setGeneratingPdf] = useState(false);
@@ -121,13 +125,44 @@ export function EditorHeader() {
       persistAnonymousSnapshotAndSignUp();
       return;
     }
-    if (!savedDesignId) {
-      setStatusError("Make at least one change so we can save your design first");
-      return;
-    }
     setStatusError(null);
     startTransition(async () => {
-      const result = await approveDesignFromEditor(savedDesignId);
+      // If there's no saved row yet (user hasn't made any edits), save the
+      // current design snapshot first so we have something to approve.
+      let idToApprove = savedDesignId;
+      if (!idToApprove) {
+        setSaving(true);
+        const saveResult = await upsertDesign({
+          id: null,
+          productSlug,
+          name: designName,
+          sectionTexts,
+          selectedPaletteId,
+          selectedFontId,
+          accentColor,
+          nameLayout,
+          accentConnector,
+          accentSingleLine,
+          reverseEnabled,
+          reverseBlocks,
+        });
+        setSaving(false);
+        if (!saveResult.ok || !saveResult.id) {
+          setStatusError(saveResult.error || "Failed to save design");
+          return;
+        }
+        idToApprove = saveResult.id;
+        setSavedDesignId(saveResult.id);
+        if (saveResult.savedAt) setLastSavedAt(saveResult.savedAt);
+        // Reflect the new id in the URL so refresh reopens the same design
+        if (typeof window !== "undefined") {
+          const url = new URL(window.location.href);
+          url.searchParams.set("design", saveResult.id);
+          window.history.replaceState(null, "", url.toString());
+        }
+      }
+
+      const result = await approveDesignFromEditor(idToApprove);
       if (result.ok) {
         setSavedDesignStatus("approved");
         router.refresh();
@@ -277,7 +312,6 @@ export function EditorHeader() {
             size="sm"
             onClick={handleApprove}
             loading={isPending}
-            disabled={!savedDesignId}
           >
             Approve Design
           </Button>
