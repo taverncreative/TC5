@@ -2,12 +2,16 @@
 
 :root {
   --tc-black: #1a1a1a;
-  --tc-white: #fafafa;
+  /* Warmer page background — cream paper, not blue-gray */
+  --tc-white: #faf8f4;
+  --tc-paper: #ffffff;
   --tc-sage: #a3b18a;
   --tc-blush: #e8cfc0;
   --tc-dusty-blue: #8eaec2;
   --tc-sage-light: #c8d5b9;
   --tc-blush-light: #f3e4da;
+  /* Restrained warm-gold for tiny editorial marks (dividers, active pill underline) */
+  --tc-gold: #b08c56;
   --tc-gray-50: #f9fafb;
   --tc-gray-100: #f3f4f6;
   --tc-gray-200: #e5e7eb;
@@ -19,6 +23,11 @@
   --tc-gray-800: #1f2937;
   --tc-gray-900: #111827;
 
+  /* Shadow scale — soft, paper-like depth */
+  --tc-shadow-sm: 0 1px 2px rgba(17, 24, 39, 0.04);
+  --tc-shadow-md: 0 4px 12px -2px rgba(17, 24, 39, 0.06), 0 2px 4px -2px rgba(17, 24, 39, 0.04);
+  --tc-shadow-lg: 0 12px 32px -8px rgba(17, 24, 39, 0.12), 0 4px 12px -4px rgba(17, 24, 39, 0.05);
+
   --background: var(--tc-white);
   --foreground: var(--tc-black);
 }
@@ -28,11 +37,13 @@
   --color-foreground: var(--foreground);
   --color-tc-black: var(--tc-black);
   --color-tc-white: var(--tc-white);
+  --color-tc-paper: var(--tc-paper);
   --color-tc-sage: var(--tc-sage);
   --color-tc-blush: var(--tc-blush);
   --color-tc-dusty-blue: var(--tc-dusty-blue);
   --color-tc-sage-light: var(--tc-sage-light);
   --color-tc-blush-light: var(--tc-blush-light);
+  --color-tc-gold: var(--tc-gold);
   --font-body: var(--font-nunito);
   --font-heading: var(--font-figtree);
 }
@@ -41,8 +52,28 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-nunito), sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-figtree), sans-serif;
+  letter-spacing: -0.01em;
+}
+
+/* Soft gold divider flourish — used sparingly in headers, footer */
+.tc-divider {
+  display: inline-block;
+  width: 32px;
+  height: 1px;
+  background: var(--tc-gold);
+  opacity: 0.6;
+}
+
+/* Simple reduced-motion protection for transforms */
+@media (prefers-reduced-motion: reduce) {
+  .tc-motion {
+    transition: none !important;
+    animation: none !important;
+  }
 }

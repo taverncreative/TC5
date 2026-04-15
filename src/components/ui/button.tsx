@@ -11,13 +11,13 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 const variantStyles: Record<ButtonVariant, string> = {
   primary:
-    "bg-[var(--tc-black)] text-[var(--tc-white)] hover:bg-[var(--tc-gray-800)] active:bg-[var(--tc-gray-700)]",
+    "bg-[var(--tc-black)] text-white hover:bg-[var(--tc-gray-800)] active:bg-[var(--tc-gray-700)] shadow-[var(--tc-shadow-sm)] hover:shadow-[var(--tc-shadow-md)] transition-all duration-300 ease-out",
   secondary:
-    "bg-[var(--tc-sage)] text-white hover:bg-[var(--tc-sage)]/90 active:bg-[var(--tc-sage)]/80",
+    "bg-[var(--tc-sage)] text-white hover:bg-[var(--tc-sage)]/90 active:bg-[var(--tc-sage)]/80 transition-colors",
   outline:
-    "border border-[var(--tc-gray-300)] text-[var(--tc-black)] hover:bg-[var(--tc-gray-50)] active:bg-[var(--tc-gray-100)]",
+    "border border-[var(--tc-gray-300)] text-[var(--tc-black)] hover:border-[var(--tc-black)] hover:bg-white active:bg-[var(--tc-gray-50)] transition-colors",
   ghost:
-    "text-[var(--tc-gray-600)] hover:bg-[var(--tc-gray-100)] active:bg-[var(--tc-gray-200)]",
+    "text-[var(--tc-gray-600)] hover:bg-[var(--tc-gray-100)] active:bg-[var(--tc-gray-200)] transition-colors",
 };
 
 const sizeStyles: Record<ButtonSize, string> = {
@@ -31,7 +31,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     return (
       <button
         ref={ref}
-        className={`inline-flex items-center justify-center font-medium rounded-md transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--tc-black)] disabled:opacity-50 disabled:pointer-events-none ${variantStyles[variant]} ${sizeStyles[size]} ${className}`}
+        className={`inline-flex items-center justify-center font-medium rounded-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--tc-black)] disabled:opacity-50 disabled:pointer-events-none ${variantStyles[variant]} ${sizeStyles[size]} ${className}`}
         disabled={disabled || loading}
         {...props}
       >
